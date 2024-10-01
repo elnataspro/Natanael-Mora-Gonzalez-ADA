@@ -12,10 +12,12 @@ void merge(int array[], int left, int mid, int right) {
     int L[n1], R[n2];
 
     // Copiar los datos a los arreglos temporales L[] y R[]
-    for (i = 0; i < n1; i++)
+    for (i = 0; i < n1; i++){
         L[i] = array[left + i];
-    for (j = 0; j < n2; j++)
+    }//for
+    for (j = 0; j < n2; j++){
         R[j] = array[mid + 1 + j];
+    }//for
 
     // Fusionar los arreglos temporales de nuevo en array[left..right]
     i = 0;  // Índice inicial del primer subarreglo
@@ -25,34 +27,35 @@ void merge(int array[], int left, int mid, int right) {
         if (L[i] <= R[j]) {
             array[k] = L[i];
             i++;
-        } else {
+        }//if
+        else {
             array[k] = R[j];
             j++;
-        }
+        }//else
         k++;
-    }
+    }//while
 
     // Copiar los elementos restantes de L[], si hay alguno
     while (i < n1) {
         array[k] = L[i];
         i++;
         k++;
-    }
+    }//while
 
     // Copiar los elementos restantes de R[], si hay alguno
     while (j < n2) {
         array[k] = R[j];
         j++;
         k++;
-    }
-}
+    }//while
+}//merge
 
 // Función principal que implementa Merge Sort
 void mergeSort(int array[], int left, int right) {
     // Caso base. Si el subarreglo tiene uno o menos elementos
     if (left >= right) {
         return;
-    }
+    }//if
 
     // Dividir el arreglo en dos mitades
     int mid = left + (right - left) / 2;
@@ -65,7 +68,7 @@ void mergeSort(int array[], int left, int right) {
 
     // Fusionar las dos mitades ordenadas
     merge(array, left, mid, right);
-}
+}//mergeSort
 
 // Función para fusionar dos arreglos ordenados
 void fusionarArreglos(int* nums1, int m, int* nums2, int n, int* resultado) {
@@ -78,18 +81,18 @@ void fusionarArreglos(int* nums1, int m, int* nums2, int n, int* resultado) {
         } else {
             resultado[k++] = nums2[j++];
         }
-    }
+    }//while
 
     // Si quedan elementos en nums1, copiarlos
     while (i < m) {
         resultado[k++] = nums1[i++];
-    }
+    }//while
 
     // Si quedan elementos en nums2, copiarlos
     while (j < n) {
         resultado[k++] = nums2[j++];
-    }
-}
+    }//while
+}//fusionarArreglos
 
 // Función para calcular la mediana de dos arreglos
 double calcularMediana(int* nums1, int m, int* nums2, int n) {
@@ -109,8 +112,8 @@ double calcularMediana(int* nums1, int m, int* nums2, int n) {
         printf("%d", mergedArray[i]);
         if (i != totalSize - 1) {
             printf(", ");
-        }
-    }
+        }//if
+    }//for
     printf("]\n");
     printf("Numero total de elementos en el arreglo: %d\n", totalSize);
 
@@ -118,13 +121,14 @@ double calcularMediana(int* nums1, int m, int* nums2, int n) {
     double mediana;
     if (totalSize % 2 == 0) {
         mediana = (mergedArray[totalSize / 2 - 1] + mergedArray[totalSize / 2]) / 2.0;
-    } else {
+    }//if 
+    else {
         mediana = mergedArray[totalSize / 2];
-    }
+    }//else
 
     free(mergedArray);
     return mediana;
-}
+}//calcularMediana
 
 int main() {
     // Variables para medir el tiempo
